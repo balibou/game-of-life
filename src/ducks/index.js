@@ -1,1 +1,1 @@
-export { default as data } from './data';
+export { default as grid } from './grid';

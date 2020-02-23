@@ -10,12 +10,12 @@ const input = [
   [1, 1, 1, 1, 0, 0],
 ];
 
-const dataReducer = (
+const gridReducer = (
   state = input,
   action,
 ) => {
   switch (action.type) {
-    case types.GET_DATA:
+    case types.SET_GRID:
       return action.payload;
     default:
       return state;
@@ -23,7 +23,7 @@ const dataReducer = (
 };
 
 const reducer = combineReducers({
-  data: dataReducer,
+  grid: gridReducer,
 });
 
 export default reducer;

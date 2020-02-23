@@ -9,6 +9,16 @@ class Grid extends React.Component {
     this.interval = setInterval(() => setNexStep(grid), 1000);
   }
 
+  componentDidUpdate(prevProps) {
+    const { isPlaying, setNexStep, grid } = this.props;
+
+    if (prevProps.isPlaying && !isPlaying) clearInterval(this.interval);
+    if (!prevProps.isPlaying && isPlaying) {
+      setNexStep(grid);
+      this.interval = setInterval(() => setNexStep(grid), 1000);
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -32,12 +42,25 @@ class Grid extends React.Component {
   }
 
   render() {
-    const { grid } = this.props;
+    const {
+      grid, pauseGrid, playGrid, goToNextStep, counter,
+    } = this.props;
 
     return (
-      <table>
-        {grid.map((e, i) => this.renderRow(i))}
-      </table>
+      <>
+        <button type="button" onClick={() => pauseGrid()}>Pause</button>
+        <button type="button" onClick={() => playGrid()}>Play</button>
+        <button type="button" onClick={() => goToNextStep()}>Go to next Step</button>
+        <span>
+          Counter:
+          {counter}
+        </span>
+        <table>
+          <tbody>
+            {grid.map((e, i) => this.renderRow(i))}
+          </tbody>
+        </table>
+      </>
     );
   }
 }
@@ -45,11 +68,21 @@ class Grid extends React.Component {
 Grid.propTypes = {
   grid: PropTypes.arrayOf(PropTypes.array),
   setNexStep: PropTypes.func,
+  isPlaying: PropTypes.bool,
+  pauseGrid: PropTypes.func,
+  playGrid: PropTypes.func,
+  goToNextStep: PropTypes.func,
+  counter: PropTypes.bool,
 };
 
 Grid.defaultProps = {
   grid: [],
   setNexStep: () => {},
+  isPlaying: true,
+  pauseGrid: () => {},
+  playGrid: () => {},
+  goToNextStep: () => { },
+  counter: 0,
 };
 
 export default Grid;

@@ -3,9 +3,16 @@ import { bindActionCreators } from 'redux';
 import Grid from './Grid';
 import { gridActions } from '../../ducks/grid';
 
-const mapStateToProps = ({ grid }) => ({ grid: grid.grid });
+const mapStateToProps = ({ grid }) => ({
+  grid: grid.grid, isPlaying: grid.isPlaying, counter: grid.counter,
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators(
-  { setNexStep: gridActions.setGrid },
+  {
+    setNexStep: gridActions.setGrid,
+    pauseGrid: gridActions.pauseGrid,
+    playGrid: gridActions.playGrid,
+    goToNextStep: gridActions.goToNextStep,
+  },
   dispatch,
 );
 

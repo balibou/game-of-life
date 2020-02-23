@@ -22,8 +22,36 @@ const gridReducer = (
   }
 };
 
+const isPlayingGridReducer = (
+  state = true,
+  action,
+) => {
+  switch (action.type) {
+    case types.PAUSE_GRID:
+      return false;
+    case types.PLAY_GRID:
+      return true;
+    default:
+      return state;
+  }
+};
+
+const gridCounterReducer = (
+  state = 0,
+  action,
+) => {
+  switch (action.type) {
+    case types.ADD_GRID_COUNTER:
+      return state + 1;
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
   grid: gridReducer,
+  isPlaying: isPlayingGridReducer,
+  counter: gridCounterReducer,
 });
 
 export default reducer;

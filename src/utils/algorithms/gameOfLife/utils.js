@@ -9,13 +9,13 @@ import {
   getNumberOfRowsAndColunmsOfArray,
 } from '../../dataStructure/array';
 
-const isOrWasLiveCell = (e) => Math.abs(e) === LIVE_CELL_STATUS;
-const isUnderPopulatedNeighbor = (counter) => counter < 2;
-const isOverPopulatedNeighbor = (counter) => counter > 3;
-const isWellPopulatedNeighbor = (counter) => counter === 3;
+export const isOrWasLiveCell = (e) => Math.abs(e) === LIVE_CELL_STATUS;
+export const isUnderPopulatedNeighbor = (counter) => counter < 2;
+export const isOverPopulatedNeighbor = (counter) => counter > 3;
+export const isWellPopulatedNeighbor = (counter) => counter === 3;
 
 
-const calculateliveNeighbors = (board, row, col) => getNeighborCells(board, { row, col })
+export const calculateliveNeighbors = (board, row, col) => getNeighborCells(board, { row, col })
   .reduce((liveNeighborsCounter, neighborCell) => {
     if (isOrWasLiveCell(neighborCell)) {
       liveNeighborsCounter += 1; // eslint-disable-line no-param-reassign
@@ -32,21 +32,23 @@ const calculateliveNeighbors = (board, row, col) => getNeighborCells(board, { ro
 4. Any dead cell with exactly three live neighbours becomes a live cell.
 */
 
-const isLiveCell = ({ nextStepArray, row, col }) => nextStepArray[row][col] === LIVE_CELL_STATUS;
+export const isLiveCell = (
+  { nextStepArray, row, col },
+) => nextStepArray[row][col] === LIVE_CELL_STATUS;
 
-const checkFirstRule = (
+export const checkFirstRule = (
   liveNeighbors, { nextStepArray, row, col },
 ) => isLiveCell({ nextStepArray, row, col }) && isUnderPopulatedNeighbor(liveNeighbors);
 
-const checkSecondRule = (
+export const checkSecondRule = (
   liveNeighbors, { nextStepArray, row, col },
 ) => isLiveCell({ nextStepArray, row, col }) && isOverPopulatedNeighbor(liveNeighbors);
 
-const checkFourthRule = (
+export const checkFourthRule = (
   liveNeighbors, { nextStepArray, row, col },
 ) => !isLiveCell({ nextStepArray, row, col }) && isWellPopulatedNeighbor(liveNeighbors);
 
-const checkRules = (liveNeighbors, { nextStepArray, row, col }) => {
+export const checkRules = (liveNeighbors, { nextStepArray, row, col }) => {
   if (
     checkFirstRule(liveNeighbors, { nextStepArray, row, col })
     || checkSecondRule(liveNeighbors, { nextStepArray, row, col })

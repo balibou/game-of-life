@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import Cell from '../Cell';
 import './Grid.css';
 
-const nextStep = [[1, 0, 1]];
-
 class Grid extends React.Component {
   componentDidMount() {
-    const { setNexStep } = this.props;
-    this.interval = setInterval(() => setNexStep(nextStep), 5000);
+    const { setNexStep, grid } = this.props;
+    this.interval = setInterval(() => setNexStep(grid), 1000);
   }
 
   componentWillUnmount() {

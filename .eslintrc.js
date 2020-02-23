@@ -8,7 +8,6 @@ module.exports = {
     window: true,
     document: true,
     expect: true,
-    test: true,
-    _: true
+    test: true
   },
 };

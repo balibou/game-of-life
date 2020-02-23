@@ -25,9 +25,9 @@ class Grid extends React.Component {
     const { grid } = this.props;
 
     return (
-      <div key={i} className="grid-row">
+      <tr key={i}>
         {grid[i].map((e, j) => this.renderCell(i, j))}
-      </div>
+      </tr>
     );
   }
 
@@ -35,9 +35,9 @@ class Grid extends React.Component {
     const { grid } = this.props;
 
     return (
-      <>
+      <table>
         {grid.map((e, i) => this.renderRow(i))}
-      </>
+      </table>
     );
   }
 }

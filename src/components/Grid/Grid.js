@@ -23,20 +23,20 @@ class Grid extends React.Component {
     clearInterval(this.interval);
   }
 
-  renderCell(i, j) {
+  renderCell(rowIndex, columnIndex) {
     const { grid } = this.props;
 
     return (
-      <Cell key={j} value={grid[i][j]} />
+      <Cell key={columnIndex} value={grid[rowIndex][columnIndex]} />
     );
   }
 
-  renderRow(i) {
+  renderRow(rowIndex) {
     const { grid } = this.props;
 
     return (
-      <tr key={i}>
-        {grid[i].map((e, j) => this.renderCell(i, j))}
+      <tr key={rowIndex}>
+        {grid[rowIndex].map((column, columnIndex) => this.renderCell(rowIndex, columnIndex))}
       </tr>
     );
   }
@@ -60,7 +60,7 @@ class Grid extends React.Component {
         </div>
         <table>
           <tbody>
-            {grid.map((e, i) => this.renderRow(i))}
+            {grid.map((row, rowIndex) => this.renderRow(rowIndex))}
           </tbody>
         </table>
       </>

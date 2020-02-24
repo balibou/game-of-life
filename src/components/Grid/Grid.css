@@ -8,3 +8,42 @@ tr {
   display: flex;
   justify-content: center;
 }
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.counter-number {
+  padding-left: 13px;
+}
+
+.controls button {
+  background-color: orange;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 24px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.controls button:not(:last-child) {
+  border-bottom: none;
+}
+
+.controls button:hover {
+  background-color: darkorange;
+}
+
+button:focus {
+  outline:none;
+}

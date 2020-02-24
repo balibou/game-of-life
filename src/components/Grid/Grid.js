@@ -48,13 +48,16 @@ class Grid extends React.Component {
 
     return (
       <>
-        <button type="button" onClick={() => pauseGrid()}>Pause</button>
-        <button type="button" onClick={() => playGrid()}>Play</button>
-        <button type="button" onClick={() => goToNextStep()}>Go to next Step</button>
-        <span>
-          Counter:
-          {counter}
-        </span>
+        <h2>Game of Life</h2>
+        <div className="controls">
+          <button type="button" onClick={() => pauseGrid()}>Pause</button>
+          <button type="button" onClick={() => playGrid()}>Play</button>
+          <button type="button" onClick={() => goToNextStep()}>Go to next Step</button>
+        </div>
+        <div className="counter">
+          Generation:
+          <span className="counter-number">{counter}</span>
+        </div>
         <table>
           <tbody>
             {grid.map((e, i) => this.renderRow(i))}
@@ -72,7 +75,7 @@ Grid.propTypes = {
   pauseGrid: PropTypes.func,
   playGrid: PropTypes.func,
   goToNextStep: PropTypes.func,
-  counter: PropTypes.bool,
+  counter: PropTypes.number,
 };
 
 Grid.defaultProps = {
